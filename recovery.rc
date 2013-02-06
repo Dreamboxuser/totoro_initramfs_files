@@ -23,6 +23,7 @@ on init
 
 on early-fs
 
+    chmod 775 /recovery/sbin/recovery
     # rfs drivers
     insmod fsr.ko
     insmod fsr_stl.ko
@@ -33,10 +34,6 @@ on fs
     mount ext4 /dev/stl10 /cache nosuid nodev noatime wait errors=panic
 on post-fs
 
-    #temp
-    chmod 750 /sbin/fat.format
-    mount rootfs rootfs / rw remount
-  
     chmod 755 /etc
     chmod 755 /res
     chmod 775 /res/keys
@@ -197,12 +194,19 @@ on post-fs
     chmod 775 /res/images/progress_fill.png
     chmod 755 /sbin
     chmod 750 /sbin/adbd
+    chmod 750 /sbin/bmlunlock
     chmod 750 /sbin/fat.format
     chmod 750 /sbin/fota_logo.png
     chmod 750 /sbin/ua_launcher
     chmod 775 /sbin/recovery.bin
     chmod 775 /sbin/recovery
     chmod 755 /recovery
+    chmod 664 /recovery/default.prop
+    chmod 664 /recovery/fota.rc
+    chmod 775 /recovery/init
+    chmod 775 /recovery/init.rc
+    chmod 664 /recovery/ueventd.goldfish.rc
+    chmod 664 /recovery/uevent.rc
     chmod 755 /recovery/etc
     chmod 664 /recovery/etc/recovery.fstab
     chmod 755 /recovery/res
@@ -228,7 +232,6 @@ on post-fs
     chmod 775 /recovery/sbin/sdparted
     chmod 775 /recovery/sbin/tune2fs
     chmod 775 /recovery/sbin/fix_permissions
-    chmod 775 /recovery/sbin/recovery
     chmod 775 /recovery/sbin/parted
     chmod 775 /recovery/sbin/nandroid-md5.sh
 
